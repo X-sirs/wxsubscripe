@@ -2,7 +2,7 @@ const request = require('superagent');
 const jsonfile = require('jsonfile');
 let config = require("./config.js");
 module.exports = (req,res,next)=>{
-    let json_token ;
+    let json_token;
     try{
         json_token = jsonfile.readFileSync('./token.json');
     }catch(err){

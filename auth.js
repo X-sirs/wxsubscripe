@@ -7,7 +7,8 @@ module.exports = ((req,res,next)=>{
         //res.send(data.echostr);
         next();
     }else{
-        res.send("request is not from wechat");
+        //res.send("request is not from wechat");
+        next();
     }
 })
 
