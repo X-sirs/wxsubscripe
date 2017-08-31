@@ -1,6 +1,6 @@
 let app = require('express')();
 app.use(require('express-xml-bodyparser')());
-// app.use(require('./auth.js'));
+app.use(require('./auth.js'));
 app.use(require('./token.js'));
 app.post("/",(req,res)=>{
     let xml = req.body.xml;
