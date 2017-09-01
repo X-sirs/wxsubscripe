@@ -22,12 +22,12 @@ app.use('/home',(req,res,next)=>{
 });
 app.post("/",(req,res)=>{
     let xml = req.body.xml;
-    console.log(xml,res.locals.token);
+    console.log(res.locals);//获取加密签名字符串
     var obj = {
         fromusername:xml.fromusername[0],
         tousername:xml.tousername[0],
         createTime:new Date().getTime(),
-        reply:'仙女姐姐会在哪里下凡'
+        reply:'欢迎来到hipclub'
     };
     var txt = `
     <xml>
@@ -40,5 +40,5 @@ app.post("/",(req,res)=>{
     `;
     res.send(txt);
 }).listen(8028,()=>{
-    console.log("已开启微信服务8028")
+    console.log("已开启服务8028")
 })

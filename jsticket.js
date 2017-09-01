@@ -13,23 +13,33 @@ function sign (ticket,url){
     return sha1(string.sort().join());
 }
 module.exports=(req,res,next)=>{
-    let access_token = jsonfile.readFileSync('./token.json');
     let url = req.url;
-    if(!access_token.ticket||Date.now()+900*1000>access_token.ticket_end_time){
-    request.get(apiconfig.domain+''+apiconfig.api.jsapi_ticket).query({
+    let access_token = jsonfile.readFileSync('./token.json');
+    let ticket;
+    try{
+        ticket = jsonfile.readFileSync('./ticket.json');
+    }catch(err){
+        ticket = null;
+    };
+    if(!ticket||Date.now()+900*1000>ticket.ticket_end_time){
+    request.get(apiconfig.jsapi_ticket).query({
         access_token:access_token.access_token,
         type:"jsapi"
     }).end((err,data)=>{
         let token = data.body;
-        token.ticket_end_time = Date.now()+token.expires_in*1000;
-        jsonfile.writeFileSync('./token.json',data.body,{spaces:4});
-        res.locals.signature = sign(token.ticket,url);
-        res.locals.ticket=token.ticket;
-        next();
+        if(token.errmsg=="ok"){
+            token.ticket_end_time = Date.now()+token.expires_in*1000;
+            jsonfile.writeFileSync('./ticket.json',data.body,{spaces:4});
+            res.locals.signature = sign(token.ticket,url);
+            res.locals.ticket=token.ticket;
+            next();
+        }else{
+            res.send("获取sdk票据失败");
+        }
     })
     }else{
-        res.locals.signature = sign(access_token.ticket,url);
-        res.locals.ticket = access_token.ticket;
+        res.locals.signature = sign(ticket.ticket,url);
+        res.locals.ticket = ticket.ticket;
         next();
     }
 }
