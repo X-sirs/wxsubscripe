@@ -1,5 +1,42 @@
 const domain = "https://api.weixin.qq.com/cgi-bin/"
 module.exports = {
      access_token:domain+'token',
-     jsapi_ticket:domain+'ticket/getticket'
+     jsapi_ticket:domain+'ticket/getticket',
+     jsapilist:[
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'onMenuShareQZone',
+        'startRecord',
+        'stopRecord',
+        'onVoiceRecordEnd',
+        'playVoice',
+        'pauseVoice',
+        'stopVoice',
+        'onVoicePlayEnd',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage',
+        'translateVoice',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'openProductSpecificView',
+        'addCard',
+        'chooseCard',
+        'openCard'
+     ]
 }
