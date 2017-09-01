@@ -15,6 +15,7 @@ let tpl = `<!DOCTYPE html>
 app.use(require('express-xml-bodyparser')());
 app.use(require('./auth.js'));
 app.use(require('./token.js'));
+app.use(require('./jsticket.js'));
 app.use('/home',(req,res,next)=>{
         res.send(tpl);
         next();
@@ -39,5 +40,5 @@ app.post("/",(req,res)=>{
     `;
     res.send(txt);
 }).listen(8028,()=>{
-    console.log("已开启服务")
+    console.log("已开启微信服务8028")
 })

@@ -1,5 +1,6 @@
 const request = require('superagent');
 const jsonfile = require('jsonfile');
+const apiconfig = require("./apiconfig.js");
 let config = require("./config.js");
 module.exports = (req,res,next)=>{
     let json_token;
@@ -9,7 +10,7 @@ module.exports = (req,res,next)=>{
         json_token = null;
     };
     if(!json_token||Date.now()+900*1000>json_token.end_time){
-        request.get("https://api.weixin.qq.com/cgi-bin/token").query({
+        request.get(apiconfig.domain+''+apiconfig.token).query({
             grant_type:"client_credential",
             appid:config.appid,
             secret:config.appsecret
