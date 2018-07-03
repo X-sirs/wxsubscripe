@@ -1,7 +1,7 @@
-const domain = "https://api.weixin.qq.com/cgi-bin/"
+const domain = "https://qyapi.weixin.qq.com/cgi-bin/"
 module.exports = {
-     access_token:domain+'token',
-     jsapi_ticket:domain+'ticket/getticket',
+     access_token:domain+'gettoken',
+     jsapi_ticket: domain + '/get_jsapi_ticket',
      jsapilist:[
         'onMenuShareTimeline',
         'onMenuShareAppMessage',

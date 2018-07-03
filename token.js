@@ -11,9 +11,8 @@ module.exports = (req,res,next)=>{
     };
     if(!json_token||Date.now()+900*1000>json_token.end_time){
         request.get(apiconfig.access_token).query({
-            grant_type:"client_credential",
-            appid:config.appid,
-            secret:config.appsecret
+            corpid: config.appid,
+            corpsecret: config.appsecret
         }).end((err,data)=>{
             let token = data.body;
             if(token.access_token){
@@ -22,12 +21,11 @@ module.exports = (req,res,next)=>{
                 res.locals.token=token.access_token;
                 next();
             }else{
-                res.send('<h1>获取token错误</h1>')
+                res.send('<h1>获取access_token失败</h1>')
             }
         })
     }else{
         res.locals.token = json_token.access_token;
         next();
-    }
-   
+    } 
 }

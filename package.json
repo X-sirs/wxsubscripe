@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon ./app.js",
-    "need":"nodemon ./vertify.js"
+    "need": "nodemon ./vertify.js"
   },
   "dependencies": {
     "express": "^4.15.4",
@@ -13,5 +13,8 @@
     "jsonfile": "^3.0.1",
     "sha1": "^1.1.1",
     "superagent": "^3.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }
